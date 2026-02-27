@@ -1,0 +1,375 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0f172a;
+    /* Slate 900 background */
+    color: #f8fafc;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Blobs for Visual Aesthetics */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.6;
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    width: 300px;
+    height: 300px;
+    background: #3b82f6;
+    /* Blue */
+    top: -50px;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 400px;
+    height: 400px;
+    background: #8b5cf6;
+    /* Purple */
+    bottom: -100px;
+    right: 5%;
+    animation-delay: -2s;
+}
+
+.blob-3 {
+    width: 250px;
+    height: 250px;
+    background: #10b981;
+    /* Emerald */
+    bottom: 20%;
+    left: 20%;
+    animation-delay: -4s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+}
+
+/* Main Container & Glassmorphism Card */
+.container {
+    padding: 1rem;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 500px;
+}
+
+.glass-card {
+    background: rgba(30, 41, 59, 0.6);
+    /* Slate 800 with opacity */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border-radius: 24px;
+    padding: 2.5rem;
+    transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* Added standard property for compatibility */
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: #94a3b8;
+    /* Slate 400 */
+    font-size: 0.9rem;
+}
+
+/* Form Groups */
+.amount-group,
+.select-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Inputs & Selects */
+.input-container,
+.select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.input-container:focus-within,
+.select-wrapper:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 1rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+input[type="number"] {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 1rem 1rem 1rem 3.5rem;
+    /* Increased left padding to prevent overlap with long currency symbols */
+    color: #f8fafc;
+    font-size: 1.25rem;
+    font-weight: 600;
+    outline: none;
+    font-family: inherit;
+}
+
+/* Hide number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Currency Selectors Layout */
+.currency-selectors {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    position: relative;
+}
+
+.select-group {
+    flex: 1;
+}
+
+.select-wrapper {
+    padding: 0 1rem;
+    height: 52px;
+    cursor: pointer;
+}
+
+.flag-icon {
+    width: 24px;
+    height: 18px;
+    border-radius: 2px;
+    object-fit: cover;
+    margin-right: 0.5rem;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.currency-select {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: #f8fafc;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    appearance: none;
+    /* Hide default dropdown arrow */
+    cursor: pointer;
+}
+
+/* Specific styling for dropdown options since they are styled by the OS natively */
+.currency-select option {
+    background: #1e293b;
+    color: #f8fafc;
+}
+
+.dropdown-icon {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    pointer-events: none;
+    /* Let clicks pass through to select */
+}
+
+/* Swap Button */
+.swap-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 1.4rem;
+    /* Aligns with selects, visually accounting for label */
+    flex-shrink: 0;
+}
+
+.swap-btn:hover {
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+}
+
+.swap-btn:active {
+    transform: scale(0.95) rotate(180deg);
+}
+
+/* Result Container */
+.result-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rate-info {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.converted-amount {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #10b981;
+    /* Emerald for positive/money feel */
+    word-break: break-word;
+    /* Prevent overflow on large numbers */
+}
+
+/* Skeleton Loading Animation */
+.loading {
+    animation: flash 1.5s infinite linear;
+    color: transparent;
+    background: linear-gradient(90deg, #1e293b 0%, #334155 50%, #1e293b 100%);
+    background-size: 200% 100%;
+    border-radius: 8px;
+    display: inline-block;
+    min-width: 150px;
+}
+
+@keyframes flash {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+/* Responsive adjustments */
+/* Tablet (iPads, up to 768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .glass-card {
+        padding: 2rem;
+    }
+
+    header h1 {
+        font-size: 1.85rem;
+    }
+
+    input[type="number"] {
+        font-size: 1.15rem;
+        /* Slightly smaller text for tablet */
+    }
+}
+
+/* Mobile (Phones, up to 480px) */
+@media (max-width: 480px) {
+    .glass-card {
+        padding: 1.25rem;
+        /* Tighter padding for very small screens */
+        border-radius: 20px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .currency-selectors {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.25rem;
+    }
+
+    .swap-btn {
+        margin: 0 auto;
+        transform: rotate(90deg);
+        /* Rotate for vertical layout */
+        width: 40px;
+        height: 40px;
+    }
+
+    .swap-btn:hover {
+        transform: scale(1.1) rotate(270deg);
+    }
+
+    .swap-btn:active {
+        transform: scale(0.95) rotate(270deg);
+    }
+
+    input[type="number"] {
+        font-size: 1.1rem;
+        padding: 1rem 1rem 1rem 3.5rem;
+        /* Maintain padding for the 3-letter currency code */
+    }
+
+    .converted-amount {
+        font-size: 1.75rem;
+        /* Make final text smaller so it doesn't wrap awkwardly */
+    }
+}

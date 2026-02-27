@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <main class="container">
+        <div class="glass-card">
+            <header>
+                <h1>Currency Converter</h1>
+                <p>Live, real-time rates for 150+ currencies.</p>
+            </header>
+
+            <form id="converter-form">
+                <div class="amount-group">
+                    <label for="amount">Amount</label>
+                    <div class="input-container">
+                        <span class="currency-symbol" id="from-symbol">$</span>
+                        <input type="number" id="amount" value="1.00" min="0" step="any">
+                    </div>
+                </div>
+
+                <div class="currency-selectors">
+                    <div class="select-group">
+                        <label for="from">From</label>
+                        <div class="select-wrapper">
+                            <img src="https://flagcdn.com/w40/us.png" alt="US Flag" class="flag-icon" id="from-flag">
+                            <select id="from-currency" class="currency-select"></select>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </div>
+                    </div>
+
+                    <button type="button" class="swap-btn" id="swap-btn" aria-label="Swap Currencies" title="Swap currencies">
+                        <i class="fas fa-exchange-alt"></i>
+                    </button>
+
+                    <div class="select-group">
+                        <label for="to">To</label>
+                        <div class="select-wrapper">
+                            <img src="https://flagcdn.com/w40/in.png" alt="IN Flag" class="flag-icon" id="to-flag">
+                            <select id="to-currency" class="currency-select"></select>
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-container" id="result-container">
+                    <p class="rate-info" id="rate-info">1 USD = ...</p>
+                    <h2 class="converted-amount" id="converted-amount">---</h2>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- JS script -->
+    <script src="script.js"></script>
+</body>
+</html>
